@@ -1,0 +1,16 @@
+# Ignorar archivos compilados y temporales de .NET
+bin/
+obj/
+*.pdb
+*.exe
+*.dll
+
+# Archivos de configuración de usuario
+.vscode/
+.idea/
+.DS_Store
+
+# Archivos de depuración y logs
+*.log
+*.suo
+*.sln*
