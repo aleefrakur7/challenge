@@ -28,11 +28,15 @@ const Home = () => {
     console.log("Enviando reserva:", data);
 
     axios.post("http://localhost:5164/api/reservations", data)
-      .then(() => alert("Reserva exitosa"))
-      .catch((error) => {
-        console.error("Error en la reserva:", error.response);
+    .then(() => alert("Reserva exitosa"))
+    .catch((error) => {
+      if (error.response && error.response.status === 400) {
+        alert(error.response.data); 
+      } else {
+        console.error("Error en la reserva:", error);
         alert("Error en la reserva");
-      });
+      }
+    });
   };
 
   return (
