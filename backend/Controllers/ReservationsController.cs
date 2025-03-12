@@ -15,7 +15,7 @@ public class ReservationsController : ControllerBase
     public IActionResult CreateReservation([FromBody] Reservation reservation)
     {
         if (reservations.Any(r => r.Date == reservation.Date && r.Service == reservation.Service))
-            return BadRequest("Ya existe una reserva para ese horario");
+            return BadRequest("Ya existe una reserva para ese día");
 
         reservations.Add(reservation);
         return Ok();
