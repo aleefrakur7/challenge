@@ -42,3 +42,4 @@ C:\Users\Administrator\Downloads\Challenge\backend\obj\Debug\net9.0\refint\Backe
 C:\Users\Administrator\Downloads\Challenge\backend\obj\Debug\net9.0\Backend.pdb
 C:\Users\Administrator\Downloads\Challenge\backend\obj\Debug\net9.0\Backend.genruntimeconfig.cache
 C:\Users\Administrator\Downloads\Challenge\backend\obj\Debug\net9.0\ref\Backend.dll
+C:\Users\Administrator\Downloads\Challenge\backend\obj\Debug\net9.0\Backend.sourcelink.json

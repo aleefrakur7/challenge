@@ -24,7 +24,7 @@ public class ReservationsController : ControllerBase
 
 public class Reservation
 {
-    public string Client { get; set; }
-    public string Service { get; set; }
-    public string Date { get; set; }
+    public string? Client { get; set; }
+    public string? Service { get; set; }
+    public string? Date { get; set; }
 }

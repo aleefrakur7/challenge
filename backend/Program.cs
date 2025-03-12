@@ -16,5 +16,5 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseCors("AllowAll");
 app.UseRouting();
-app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+app.MapControllers();
 app.Run();
