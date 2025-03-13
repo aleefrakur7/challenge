@@ -32,6 +32,9 @@ cd frontend
 Instalar dependencias:
 npm install
 
+Instalar React Toastify:
+npm install react-toastify
+
 Iniciar el servidor de desarrollo:
 npm run dev
 
