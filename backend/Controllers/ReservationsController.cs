@@ -9,12 +9,18 @@ public class ReservationsController : ControllerBase
     private static List<Reservation> reservations = new();
 
     [HttpGet]
-    public IActionResult GetReservations() => Ok(reservations);
+    public async Task<IActionResult> GetReservations()
+    {
+        return await Task.FromResult(Ok(reservations)); 
+    }
 
     [HttpPost]
-    public IActionResult CreateReservation([FromBody] Reservation reservation)
+    public async Task<IActionResult> CreateReservation([FromBody] Reservation reservation)
     {
-        if (string.IsNullOrEmpty(reservation.Client) || string.IsNullOrEmpty(reservation.Service) || string.IsNullOrEmpty(reservation.Date) || string.IsNullOrEmpty(reservation.Time))
+        if (string.IsNullOrEmpty(reservation.Client) || 
+            string.IsNullOrEmpty(reservation.Service) || 
+            string.IsNullOrEmpty(reservation.Date) || 
+            string.IsNullOrEmpty(reservation.Time))
         {
             return BadRequest("Todos los campos son obligatorios.");
         }
@@ -30,7 +36,7 @@ public class ReservationsController : ControllerBase
         }
 
         reservations.Add(reservation);
-        return Ok();
+        return await Task.FromResult(Ok());
     }
 }
 

@@ -13,7 +13,10 @@ public class ServicesController : ControllerBase
     };
 
     [HttpGet]
-    public IActionResult GetServices() => Ok(services);
+    public async Task<IActionResult> GetServices()
+    {
+        return await Task.FromResult(Ok(services)); 
+    }
 }
 
 public class Service
