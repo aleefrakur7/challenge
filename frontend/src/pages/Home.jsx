@@ -7,6 +7,7 @@ const Home = () => {
   const [client, setClient] = useState("");
   const [selectedService, setSelectedService] = useState(""); 
   const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:5164/api/services")
@@ -19,16 +20,29 @@ const Home = () => {
   }, []);
 
   const handleReserve = () => {
-    if (!client || !selectedService || !selectedDate) {
+    if (!client || !selectedService || !selectedDate || !selectedTime) {
       alert("Por favor, completa todos los campos.");
       return;
     }
 
-    const data = { client, service: selectedService, date: selectedDate };
+    if (reservations.some(res => res.client === client && res.date === selectedDate)) {
+      alert("Ya tienes una reserva para este día.");
+      return;
+    }
+
+    if (reservations.some(res => res.date === selectedDate && res.time === selectedTime && res.service === selectedService)) {
+      alert("Ya existe una reserva para este servicio en este horario.");
+      return;
+    }
+
+    const data = { client, service: selectedService, date: selectedDate, time: selectedTime };
     console.log("Enviando reserva:", data);
 
     axios.post("http://localhost:5164/api/reservations", data)
-    .then(() => alert("Reserva exitosa"))
+    .then(() => {
+      alert("Reserva exitosa");
+      setReservations([...reservations, data]); 
+    })
     .catch((error) => {
       if (error.response && error.response.status === 400) {
         alert(error.response.data); 
@@ -57,9 +71,11 @@ const Home = () => {
       </select>
 
       <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+      <input type="time" value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} />
       <button onClick={handleReserve}>Reservar</button>
     </div>
   );
 };
 
 export default Home;
+
